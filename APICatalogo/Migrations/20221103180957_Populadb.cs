@@ -13,7 +13,7 @@ namespace APICatalogo.Migrations
             mb.Sql("Insert into Categorias(Nome, ImagemUrl) Values('Sobremesas','http://www.jimmy.net/Imagens/3.jpg')");
 
             mb.Sql("Insert into Produtos(Nome,Descricao,Preco,ImagemUrl,Estoque,DataCadastro,CategoriaId) " +
-           "Values('Coca-Cola Diet','Refrigerante de Cola 350 ml',5.45,'http://www.jimmy.net/Imagens/coca.jpg',50,GETDATE(),(Select CategoriaId from Categorias where Nome='Bebidas'))");
+                                "Values('Coca-Cola Diet','Refrigerante de Cola 350 ml',5.45,'http://www.jimmy.net/Imagens/coca.jpg',50,GETDATE(),(Select CategoriaId from Categorias where Nome='Bebidas'))");
 
             mb.Sql("Insert into Produtos(Nome,Descricao,Preco,ImagemUrl,Estoque,DataCadastro,CategoriaId) " +
                                 "Values('Lanche de Atum','Lanche de Atum com maionese',8.50,'http://www.jimmy.net/Imagens/atum.jpg',10,GETDATE(),(Select CategoriaId from Categorias where Nome='Lanches'))");
