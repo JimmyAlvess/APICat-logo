@@ -20,7 +20,7 @@ namespace APICatalogo.Controllers
         {
             return _context.Produtos.AsNoTracking().ToList();
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}",Name = "ObterProduto")]
         public ActionResult<Produto> GetId(int id)
         {
             var produto = _context.Produtos.AsNoTracking()
@@ -33,9 +33,39 @@ namespace APICatalogo.Controllers
         }
         [HttpPost]
 
-        public ActionResult Post(Produto produto)
+        public ActionResult Post([FromBody]Produto produto)
         {
+            _context.Produtos.Add(produto);
+            _context.SaveChanges();
+            return new CreatedAtRouteResult("ObterProduto",
+                new {id = produto.ProdutoId}, produto);
+        }
+        [HttpPut("{id}")]
+        public ActionResult Put(int id,[FromBody]Produto produto)
+        {
+            if(id != produto.ProdutoId)
+            {
+                return BadRequest();
+            }
 
+            _context.Entry(produto).State = EntityState.Modified;
+            _context.SaveChanges();
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        public ActionResult<Produto> Delete(int id)
+        {
+            var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
+            //var produto = _context.Produtos.Find(id);
+
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            _context.Produtos.Remove(produto);
+            _context.SaveChanges();
+            return produto;
         }
     }
 }
