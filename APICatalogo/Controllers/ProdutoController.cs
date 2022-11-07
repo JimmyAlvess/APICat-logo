@@ -31,6 +31,11 @@ namespace APICatalogo.Controllers
             }
             return produto;
         }
-        
+        [HttpPost]
+
+        public ActionResult Post(Produto produto)
+        {
+
+        }
     }
 }
