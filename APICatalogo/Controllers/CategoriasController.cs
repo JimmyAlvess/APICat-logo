@@ -17,11 +17,11 @@ namespace APICatalogo.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Categoria>> Get() 
+        public async Task<ActionResult<IEnumerable<Categoria>>> Get() 
         {
             try
             {
-                return _context.Categorias.AsNoTracking().ToList();
+                return await _context.Categorias.AsNoTracking().ToListAsync();
 
             }
             catch (Exception)
@@ -31,12 +31,12 @@ namespace APICatalogo.Controllers
         }
 
         [HttpGet("{id}", Name = "ObterCategoria")]
-        public ActionResult<Categoria> Get(int id)
+        public async Task<ActionResult<Categoria>> Get(int id)
         {
             try
             {
-                var categorias = _context.Categorias.AsNoTracking()
-                .FirstOrDefault(c => c.CategoriaId == id);
+                var categorias =  await _context.Categorias.AsNoTracking()
+                .FirstOrDefaultAsync(c => c.CategoriaId == id);
 
                 if (categorias == null)
                 {
