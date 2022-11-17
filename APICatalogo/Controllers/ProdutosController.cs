@@ -1,6 +1,7 @@
 ﻿using APICatalogo.Context;
 using APICatalogo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace APICatalogo.Controllers
@@ -16,11 +17,11 @@ namespace APICatalogo.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Produto>> Get()
+        public async Task<ActionResult<IEnumerable<Produto>>> Get()
         {
             try
             {
-                return _context.Produtos.AsNoTracking().ToList();
+                return await _context.Produtos.AsNoTracking().ToListAsync();
             }
             catch (Exception)
             {
@@ -29,12 +30,12 @@ namespace APICatalogo.Controllers
             
         }
         [HttpGet("{id}",Name = "ObterProduto")]
-        public ActionResult<Produto> GetId(int id)
+        public async Task<ActionResult<Produto>> GetId(int id)
         {
             try
             {
-                var produto = _context.Produtos.AsNoTracking()
-              .FirstOrDefault(p => p.ProdutoId == id);
+                var produto = await _context.Produtos.AsNoTracking()
+              .FirstOrDefaultAsync(p => p.ProdutoId == id);
                 if (produto == null)
                 {
                     return NotFound($"Não foi possível encontrar o produtoId = {id}");
