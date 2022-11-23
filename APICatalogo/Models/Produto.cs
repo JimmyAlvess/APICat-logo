@@ -12,7 +12,7 @@ namespace APICatalogo.Models
 
         [Required]
         [StringLength(80)]
-        //[PrimeiraLetraMaiuscula]
+[]
         public string? Nome { get; set; }
 
         [Required]
