@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using System.Linq.Expressions;
 
 namespace APICatalogo.Repository
@@ -9,5 +10,11 @@ namespace APICatalogo.Repository
         void Add(T entity);
         void Update(T entity);
         void Delete(T entity);
+=======
+﻿namespace APICatalogo.Repository
+{
+    public interface IRepository
+    {
+>>>>>>> efcac92997fb0368873cebe92508688ccd31aaf2
     }
 }
