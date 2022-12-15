@@ -14,7 +14,6 @@ namespace APICatalogo.Context
         }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Produto> Produtos { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -29,5 +28,6 @@ namespace APICatalogo.Context
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }
+
     }
 }
